@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "name": "Alpha Admin",
+    "slug": "alpha-admin-portal",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "scheme": "alpha-admin",
+    "ios": {
+      "supportsTablet": true
+    },
+    "web": {
+      "bundler": "metro",
+      "favicon": "./assets/favicon.png"
+    },
+    "android": {
+      "package": "com.mutet.alphaadmin"
+    },
+    "plugins": [],
+    "extra": {
+      "eas": {
+        "projectId": "e278e7e9-0128-476e-a18e-e92d19df7dec"
+      }
+    },
+    "owner": "mutethia"
+  }
+}
