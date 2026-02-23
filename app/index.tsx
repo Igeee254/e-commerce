@@ -2,13 +2,14 @@ import { useAuth } from '@/context/AuthContext';
 import { FontAwesome } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import React, { useEffect, useRef, useState } from 'react';
-import { Animated, Dimensions, ImageBackground, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Animated, ImageBackground, Pressable, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 
-const { width, height } = Dimensions.get('window');
+
 
 export default function LandingScreen() {
     const router = useRouter();
     const { isLoggedIn } = useAuth();
+    const { width, height } = useWindowDimensions();
     const [scanStage, setScanStage] = useState(0);
     const [isScanning, setIsScanning] = useState(true);
     const [personalizedMsg, setPersonalizedMsg] = useState('');
@@ -166,8 +167,6 @@ const styles = StyleSheet.create({
     },
     background: {
         flex: 1,
-        width: width,
-        height: height,
     },
     overlay: {
         flex: 1,
