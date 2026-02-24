@@ -288,7 +288,7 @@ async def login(user: UserLogin):
 @app.get("/products")
 async def get_products(category: Optional[str] = None):
     try:
-        if category:
+        if category and category != "All":
             cats = await supabase.get_table("categories", select="id", filters={"name": f"eq.{category}"})
             if cats:
                 cat_id = cats[0]["id"]
