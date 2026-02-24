@@ -42,7 +42,7 @@ export default function HomeScreen() {
       const prods = await prodRes.json();
       const cats = await catRes.json();
 
-      setFeaturedItems(prods.slice(0, 8));
+      setFeaturedItems(prods.slice(0, 9));
       // Backend may return [{id, name}] objects or plain strings — normalise to strings
       const catNames: string[] = Array.isArray(cats)
         ? cats.map((c: any) => (typeof c === 'string' ? c : c?.name ?? String(c)))
