@@ -11,6 +11,10 @@ import httpx
 
 app = FastAPI(title="Alpha Boutique Smart Webs API")
 
+@app.get("/")
+async def root():
+    return {"status": "success", "message": "Alpha Boutique API is live and running!"}
+
 print(f"Backend started with SUPABASE_URL: {os.environ.get('SUPABASE_URL')}")
 
 app.add_middleware(
