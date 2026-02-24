@@ -16,15 +16,13 @@ const THEME_STORAGE_KEY = 'user-theme-preference';
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const deviceColorScheme = useDeviceColorScheme();
-    const [themePreference, setThemePreferenceState] = useState<ThemePreference>('dark');
-
-    console.log('ThemeContext: Initializing with theme:', themePreference);
+    const [themePreference, setThemePreferenceState] = useState<ThemePreference>('dark'); // Force dark default
 
     useEffect(() => {
-        // Load persisted theme preference
         const loadTheme = async () => {
             try {
                 const savedTheme = await AsyncStorage.getItem(THEME_STORAGE_KEY);
+                console.log('ThemeContext: Loaded from storage:', savedTheme);
                 if (savedTheme === 'light' || savedTheme === 'dark' || savedTheme === 'system') {
                     setThemePreferenceState(savedTheme);
                 }
@@ -37,6 +35,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
     const setThemePreference = async (theme: ThemePreference) => {
         try {
+            console.log('ThemeContext: Setting theme preference to:', theme);
             await AsyncStorage.setItem(THEME_STORAGE_KEY, theme);
             setThemePreferenceState(theme);
         } catch (error) {
@@ -44,14 +43,12 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
         }
     };
 
-    const colorScheme = themePreference === 'system'
-        ? (deviceColorScheme ?? 'light')
+    const activeColorScheme = themePreference === 'system'
+        ? (deviceColorScheme ?? 'dark') // Default system to dark if unknown on web
         : themePreference;
 
-    console.log('ThemeContext: Calculated active colorScheme:', colorScheme, '(device reports:', deviceColorScheme, ')');
-
     return (
-        <ThemeContext.Provider value={{ themePreference, setThemePreference, colorScheme }}>
+        <ThemeContext.Provider value={{ themePreference, setThemePreference, colorScheme: activeColorScheme as 'light' | 'dark' }}>
             {children}
         </ThemeContext.Provider>
     );
