@@ -273,7 +273,7 @@ const styles = StyleSheet.create({
   },
   section: {
     marginTop: 40,
-    paddingHorizontal: 24,
+    paddingHorizontal: 16,
   },
   sectionHeader: {
     flexDirection: 'row',
@@ -323,7 +323,7 @@ const styles = StyleSheet.create({
   productsGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 20,
+    gap: 10,
     backgroundColor: 'transparent',
   },
   productsGridLarge: {
@@ -341,11 +341,11 @@ const styles = StyleSheet.create({
   },
   productImage: {
     width: '100%',
-    height: 140,
+    height: 120,
     backgroundColor: '#F0F0F0',
   },
   productInfo: {
-    padding: 16,
+    padding: 8,
     position: 'relative',
     backgroundColor: 'transparent',
   },
