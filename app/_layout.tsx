@@ -60,6 +60,7 @@ export default function RootLayout() {
 
 function ThemeProviderWrapper() {
   const colorScheme = useColorScheme();
+  console.log('Layout: ThemeProviderWrapper active colorScheme:', colorScheme);
 
   return (
     <ReactNavigationThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>

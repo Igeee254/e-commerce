@@ -16,7 +16,9 @@ const THEME_STORAGE_KEY = 'user-theme-preference';
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const deviceColorScheme = useDeviceColorScheme();
-    const [themePreference, setThemePreferenceState] = useState<ThemePreference>('system');
+    const [themePreference, setThemePreferenceState] = useState<ThemePreference>('dark');
+
+    console.log('ThemeContext: Initializing with theme:', themePreference);
 
     useEffect(() => {
         // Load persisted theme preference
@@ -45,6 +47,8 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const colorScheme = themePreference === 'system'
         ? (deviceColorScheme ?? 'light')
         : themePreference;
+
+    console.log('ThemeContext: Calculated active colorScheme:', colorScheme, '(device reports:', deviceColorScheme, ')');
 
     return (
         <ThemeContext.Provider value={{ themePreference, setThemePreference, colorScheme }}>
