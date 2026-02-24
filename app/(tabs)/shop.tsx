@@ -272,7 +272,9 @@ export default function ShopScreen() {
               </View>
             ) : (
               <View style={styles.emptySearchContainer}>
-                <Text style={styles.emptySearchSubtitle}>Start searching to see products.</Text>
+                <FontAwesome name="shopping-bag" size={48} color="#636366" />
+                <Text style={[styles.emptySearchTitle, { color: currentColors.text }]}>Collection is empty</Text>
+                <Text style={styles.emptySearchSubtitle}>We're currently updating our selection. Check back soon!</Text>
               </View>
             )}
           </View>
