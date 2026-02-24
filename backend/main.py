@@ -311,9 +311,31 @@ async def get_products(category: Optional[str] = None):
                 "description": p.get("description")
             } for p in data
         ]
+@app.get("/products/{product_id}")
+async def get_product_details(product_id: str):
+    try:
+        data = await supabase.get_table("products", filters={"id": f"eq.{product_id}"})
+        if not data:
+            raise HTTPException(status_code=404, detail="Product not found")
+        
+        item = data[0]
+        # Fetch category name
+        cats = await supabase.get_table("categories", select="name", filters={"id": f"eq.{item['category_id']}"})
+        category_name = cats[0]["name"] if cats else "Unknown"
+        
+        return {
+            "id": str(item["id"]),
+            "name": item["name"],
+            "price": str(item["price_ksh"]),
+            "category": category_name,
+            "image": item["image_url"],
+            "description": item.get("description", "No description available.")
+        }
+    except HTTPException:
+        raise
     except Exception as e:
-        print(f"Fetch error: {e}")
-        return []
+        print(f"Product detail error: {e}")
+        raise HTTPException(status_code=400, detail=str(e))
 
 @app.post("/products", response_model=Product)
 async def create_product(product: CreateProduct):
