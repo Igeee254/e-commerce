@@ -46,7 +46,7 @@ export default function LandingScreen() {
         Animated.timing(fadeAnim, {
             toValue: 1,
             duration: 1000,
-            useNativeDriver: true
+            useNativeDriver: false
         }).start();
 
         let currentStage = 0;
@@ -86,7 +86,7 @@ export default function LandingScreen() {
         Animated.timing(contentFadeAnim, {
             toValue: 1,
             duration: 1000,
-            useNativeDriver: true
+            useNativeDriver: false
         }).start();
     };
 

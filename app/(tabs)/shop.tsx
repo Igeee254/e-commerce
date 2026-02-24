@@ -150,11 +150,11 @@ export default function ShopScreen() {
     }
 
     if (currentOffset <= 0) {
-      Animated.spring(searchBarTranslateY, { toValue: 0, useNativeDriver: true, bounciness: 0 }).start();
+      Animated.spring(searchBarTranslateY, { toValue: 0, useNativeDriver: false, bounciness: 0 }).start();
     } else if (diff > 5) {
-      Animated.spring(searchBarTranslateY, { toValue: -160, useNativeDriver: true, bounciness: 0 }).start();
+      Animated.spring(searchBarTranslateY, { toValue: -160, useNativeDriver: false, bounciness: 0 }).start();
     } else if (diff < -5) {
-      Animated.spring(searchBarTranslateY, { toValue: 0, useNativeDriver: true, bounciness: 0 }).start();
+      Animated.spring(searchBarTranslateY, { toValue: 0, useNativeDriver: false, bounciness: 0 }).start();
     }
 
     lastScrollY.current = currentOffset;
