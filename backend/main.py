@@ -311,6 +311,10 @@ async def get_products(category: Optional[str] = None):
                 "description": p.get("description")
             } for p in data
         ]
+    except Exception as e:
+        print(f"Fetch error: {e}")
+        return []
+
 @app.get("/products/{product_id}")
 async def get_product_details(product_id: str):
     try:
